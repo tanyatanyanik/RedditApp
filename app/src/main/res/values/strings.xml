@@ -1,4 +1,23 @@
 <resources>
     <string name="app_name">RedditApp</string>
     <string name="ok_">OK</string>
+
+    <string name="comments">%1$s comments</string>
+    <string name="one_comment">1 comment</string>
+
+    <string name="seconds_ago">%1$s seconds ago</string>
+    <string name="minutes_ago">%1$s minutes ago</string>
+    <string name="hours_ago">%1$s hours ago</string>
+    <string name="days_ago">%1$s days ago</string>
+    <string name="weeks_ago">%1$s weeks ago</string>
+    <string name="months_ago">%1$s months ago</string>
+    <string name="years_ago">%1$s years ago</string>
+
+    <string name="one_second_ago">1 second ago</string>
+    <string name="one_minute_ago">1 minute ago</string>
+    <string name="one_hour_ago">1 hour ago</string>
+    <string name="one_day_ago">1 day ago</string>
+    <string name="one_weeks_ago">1 weeks ago</string>
+    <string name="one_month_ago">1 month ago</string>
+    <string name="one_year_ago">1 year ago</string>
 </resources>

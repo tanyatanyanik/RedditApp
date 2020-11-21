@@ -2,14 +2,13 @@ package io.redditapp.api.pesponses
 
 import com.squareup.moshi.Json
 
-data class ResponsePublicatiosModel(
+data class ResponsePublicationsModel(
     @field:Json(name = "kind") val kind: String?
     , @field:Json(name = "data") val data: DataModel?
 )
 
 data class DataModel(
-    @field:Json(name = "modhash") val modhash: String?
-    , @field:Json(name = "dist") val dist: Int?
+    @field:Json(name = "dist") val dist: Int?
     , @field:Json(name = "children") val children: List<ChildrenModel>?
 )
 
@@ -19,20 +18,21 @@ data class ChildrenModel(
 )
 
 data class DataChildrenModel(
-    @field:Json(name = "author_fullname") val authorFullname: String?
-    , @field:Json(name = "created") val created: Float?
+    @field:Json(name = "id") val id: String?
+    , @field:Json(name = "author") val author: String?
+    , @field:Json(name = "created") val createdDate: Float?
     , @field:Json(name = "thumbnail") val thumbnailUrl: String?
-    , @field:Json(name = "preview") val previewImages: PreviewImadeModel?
-    , @field:Json(name = "num_comments") val num_comments: Int?
+    , @field:Json(name = "num_comments") val numComments: Int?
+    , @field:Json(name = "preview") val previewImages: PreviewImageModel?
 
 )
 
-data class PreviewImadeModel(
+data class PreviewImageModel(
     @field:Json(name = "images") val images: List<ImageModel>?
     , @field:Json(name = "enabled") val enabled: Boolean?
 )
 
-data class ImageModel (
+data class ImageModel(
     @field:Json(name = "source") val source: ImageItemModel?
 )
 

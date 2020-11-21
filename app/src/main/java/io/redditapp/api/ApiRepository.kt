@@ -1,7 +1,7 @@
 package io.redditapp.api
 
 import com.squareup.moshi.JsonDataException
-import io.redditapp.api.pesponses.ResponsePublicatiosModel
+import io.redditapp.api.pesponses.ResponsePublicationsModel
 import retrofit2.Response
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -11,7 +11,7 @@ class ApiRepository {
     val apiInterface by lazy { ApiFactory.generateApi() }
 
     suspend fun getTopPublications(): Result<Any>? {
-        val call: suspend () -> Response<ResponsePublicatiosModel> =
+        val call: suspend () -> Response<ResponsePublicationsModel> =
             {
                 apiInterface.getTopPublications()
             }
