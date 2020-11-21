@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import io.redditapp.R
 import io.redditapp.data.Preferences
@@ -41,7 +40,6 @@ class MainFragment : BaseFragment() {
         recyclerView.adapter = publicationAdapter
 
         viewModel.respPosts observe {
-            Toast.makeText(requireContext(), "Success!", Toast.LENGTH_SHORT).show()
             publicationAdapter.setData(it)
             showLoading(false)
         }

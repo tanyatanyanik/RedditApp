@@ -20,6 +20,7 @@ data class ChildrenModel(
 data class DataChildrenModel(
     @field:Json(name = "id") val id: String?
     , @field:Json(name = "author") val author: String?
+    , @field:Json(name = "title") val title: String?
     , @field:Json(name = "created") val createdDate: Float?
     , @field:Json(name = "thumbnail") val thumbnailUrl: String?
     , @field:Json(name = "num_comments") val numComments: Int?

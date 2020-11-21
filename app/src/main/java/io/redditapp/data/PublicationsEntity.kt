@@ -36,11 +36,19 @@ open class ChildrenEntity(
 open class DataChildrenEntity(
     var authorFullname: String? = null
     , var id: String? = null
+    , var title: String? = null
     , var created: Float? = null
     , var thumbnailUrl: String? = null
     , var numComments: Int? = null
     , var previewImages: PreviewImageEntity? = null
 ) : RealmObject() {
+
+    fun getDateMillis(): Long? {
+        created?.let {
+            return it.toLong() * 1000L
+        }
+        return null
+    }
 
     fun getFullImageUrl(): String? {
         if (previewImages?.enabled == true) {

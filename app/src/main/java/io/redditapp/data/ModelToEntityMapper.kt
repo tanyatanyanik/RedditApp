@@ -40,6 +40,7 @@ class ModelToEntityMapper {
     private fun createDataChildrenEntity(model: DataChildrenModel): DataChildrenEntity? {
         val entity = realm.createObject(DataChildrenEntity::class.java)
         entity.id = model.id
+        entity.title = model.title
         entity.created = model.createdDate
         entity.authorFullname = model.author
         entity.numComments = model.numComments
