@@ -19,6 +19,7 @@ class MainFragment : BaseFragment() {
     }
 
     private lateinit var viewModel: MainViewModel
+    private lateinit var publicationAdapter: PublicationAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,8 +33,16 @@ class MainFragment : BaseFragment() {
         val sp = Preferences(requireContext())
         viewModel = ViewModelProvider(this, ViewModelFactory(sp)).get(MainViewModel::class.java)
 
+        publicationAdapter = PublicationAdapter {
+            it?.let {
+                viewModel.imageClicked(it)
+            }
+        }
+        recyclerView.adapter = publicationAdapter
+
         viewModel.respPosts observe {
             Toast.makeText(requireContext(), "Success!", Toast.LENGTH_SHORT).show()
+            publicationAdapter.setData(it)
             showLoading(false)
         }
         viewModel.errorMsg observe {
