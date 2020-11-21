@@ -2,7 +2,7 @@ package io.redditapp.api.pesponses
 
 import com.squareup.moshi.Json
 
-data class ResponseTopPublicatiosModel(
+data class ResponsePublicatiosModel(
     @field:Json(name = "kind") val kind: String?
     , @field:Json(name = "data") val data: DataModel?
 )
