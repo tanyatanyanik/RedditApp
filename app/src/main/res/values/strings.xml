@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">RedditApp</string>
     <string name="ok_">OK</string>
+    <string name="now">now</string>
 
     <string name="comments">%1$s comments</string>
     <string name="one_comment">1 comment</string>

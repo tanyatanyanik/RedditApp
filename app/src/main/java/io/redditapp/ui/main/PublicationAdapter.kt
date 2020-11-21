@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.redditapp.R
 import io.redditapp.data.DataChildrenEntity
-import io.redditapp.utils.DF_DATE_STANDARD
 import io.redditapp.utils.DateUtils
 
 class PublicationAdapter(val onImageClick: (itemId: String?) -> Unit) :
@@ -49,18 +48,21 @@ class PublicationAdapter(val onImageClick: (itemId: String?) -> Unit) :
         else
             holder.tvComments.text = context.getString(R.string.comments, (comments).toString())
 
-        //todo reformat date
-//        context.resources.getString(R.string.one_comment)
-        holder.tvDate.text = DateUtils.formatDateFromMillis(pub.getDateMillis(), DF_DATE_STANDARD)
+//        holder.tvDate.text = DateUtils.formatDateFromMillis(pub.getDateMillis(), DF_DATE_STANDARD)
+        pub.getDateMillis()?.let {
+            holder.tvDate.text = DateUtils.formatTimeAgoFromMillis(it, context.resources)
+        }
 
-        val url = pub.thumbnailUrl
+        val url = pub.getThumbNailUrl()
         if (url != null) {
             Glide.with(context).load(url).into(holder.iv)
+            holder.iv.scaleType = ImageView.ScaleType.CENTER_CROP
             holder.iv.setOnClickListener {
                 onImageClick(pub.id)
             }
         } else {
             Glide.with(context).load(context.getDrawable(R.drawable.ic_reddit_icon)).into(holder.iv)
+            holder.iv.scaleType = ImageView.ScaleType.FIT_CENTER
         }
     }
 

@@ -3,6 +3,8 @@ package io.redditapp.data
 import io.realm.RealmList
 import io.realm.RealmObject
 
+const val EMPTY_THUMBNAIL_URL = "default"
+
 open class PublicationsEntity(
     var kind: String? = null
     , var data: DataEntity? = null
@@ -42,6 +44,12 @@ open class DataChildrenEntity(
     , var numComments: Int? = null
     , var previewImages: PreviewImageEntity? = null
 ) : RealmObject() {
+
+    fun getThumbNailUrl(): String? {
+        if (thumbnailUrl != null && thumbnailUrl != EMPTY_THUMBNAIL_URL)
+            return thumbnailUrl
+        return null
+    }
 
     fun getDateMillis(): Long? {
         created?.let {
