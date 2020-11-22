@@ -42,7 +42,14 @@ class ImageFragment : BaseFragment() {
         viewModel.urlArgReceived(imgUrl, isImgFull)
 
         viewModel.imgUrl observe {
-            Glide.with(requireContext()).load(it.first).into(ivLargeImg)
+            Glide.with(requireContext())
+                .load(it.first)
+                .placeholder(R.drawable.ic_insert_photo)
+                .error(R.drawable.ic_image_not_supported)
+                .fallback(R.drawable.ic_image_not_supported)
+                .fitCenter()
+                .into(ivLargeImg)
+
             if (!it.second)
                 Toast.makeText(
                     requireContext(),
