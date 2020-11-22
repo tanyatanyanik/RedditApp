@@ -45,6 +45,7 @@ class ModelToEntityMapper {
         entity.authorFullname = model.author
         entity.numComments = model.numComments
         entity.thumbnailUrl = model.thumbnailUrl
+        entity.imageUrl = model.imageUrl
         model.previewImages?.let { entity.previewImages = createPreviewImagesEntity(it) }
         return entity
     }

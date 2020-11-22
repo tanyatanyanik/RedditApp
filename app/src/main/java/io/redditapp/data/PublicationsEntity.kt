@@ -41,12 +41,13 @@ open class DataChildrenEntity(
     , var title: String? = null
     , var created: Float? = null
     , var thumbnailUrl: String? = null
+    , var imageUrl: String? = null
     , var numComments: Int? = null
     , var previewImages: PreviewImageEntity? = null
 ) : RealmObject() {
 
     fun getThumbNailUrl(): String? {
-        if (thumbnailUrl != null && thumbnailUrl != EMPTY_THUMBNAIL_URL)
+        if (thumbnailUrl != null && thumbnailUrl!!.isNotEmpty() && thumbnailUrl != EMPTY_THUMBNAIL_URL)
             return thumbnailUrl
         return null
     }
@@ -59,18 +60,25 @@ open class DataChildrenEntity(
     }
 
     fun getFullImageUrl(): String? {
-        if (previewImages?.enabled == true) {
-            val imgList = ArrayList<ImageEntity>()
-            previewImages?.images?.let {
-                imgList.addAll(it)
+        if (imageUrl != null && imageUrl!!.isNotEmpty() && imageUrl != EMPTY_THUMBNAIL_URL) {
+            if (imageUrl!!.contains(".jpg")) {
+                return imageUrl!!.substringBefore(".jpg") + ".jpg"
             }
-            imgList.sortByDescending {
-                it.source?.width
-            }
-            if (imgList.isNotEmpty()) {
-                imgList[0].source?.url?.let {
-                    return it
-                }
+        }
+        return null
+    }
+
+    fun getImageSource(): String? {
+        val imgList = ArrayList<ImageEntity>()
+        previewImages?.images?.let {
+            imgList.addAll(it)
+        }
+        imgList.sortByDescending {
+            it.source?.width
+        }
+        if (imgList.isNotEmpty()) {
+            imgList[0].source?.url?.let {
+                return it.substringBefore(".jpg") + ".jpg"
             }
         }
         return null

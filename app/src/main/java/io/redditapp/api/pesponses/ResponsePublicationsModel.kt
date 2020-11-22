@@ -23,6 +23,7 @@ data class DataChildrenModel(
     , @field:Json(name = "title") val title: String?
     , @field:Json(name = "created") val createdDate: Float?
     , @field:Json(name = "thumbnail") val thumbnailUrl: String?
+    , @field:Json(name = "url_overridden_by_dest") val imageUrl: String?
     , @field:Json(name = "num_comments") val numComments: Int?
     , @field:Json(name = "preview") val previewImages: PreviewImageModel?
 

@@ -23,12 +23,17 @@ class MainViewModel(val pref: Preferences) : ViewModel() {
     private val scope = CoroutineScope(coroutineContext)
 
     val respPosts = MutableLiveData<List<DataChildrenEntity>>()
-    val imgUrl = MutableLiveData<String?>()
+    val imageUrl = SingleLiveEvent<Pair<String, Boolean>>()
+    val thumbnailUrl = SingleLiveEvent<String>()
     val errorMsg = SingleLiveEvent<String>()
 
     private val repo = RedditRepository()
 
-    fun getTopPublications() {
+    init {
+        getTopPublications()
+    }
+
+    private fun getTopPublications() {
         scope.launch {
             val resp = ApiRepository().getTopPublications()
             when (resp) {
@@ -56,13 +61,25 @@ class MainViewModel(val pref: Preferences) : ViewModel() {
         }
     }
 
+    fun refreshClicked() {
+        getTopPublications()
+    }
+
     fun imageClicked(dataChildrenId: String) {
 
-        val imageUrl = (respPosts.value?.firstOrNull {
+        val imgUrl = (respPosts.value?.firstOrNull {
             it.id == dataChildrenId
         })?.getFullImageUrl()
 
-        imgUrl.postValue(imageUrl)
+        if (imgUrl != null)
+            imageUrl.postValue(Pair(imgUrl, true))
+        else {
+            val thumbUrl = (respPosts.value?.firstOrNull {
+                it.id == dataChildrenId
+            })?.getThumbNailUrl()
+            if (thumbUrl != null)
+                imageUrl.postValue(Pair(thumbUrl, false))
+        }
     }
 
 }

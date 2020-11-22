@@ -16,11 +16,14 @@
     </fragment>
     <fragment
         android:id="@+id/imageFragment"
-        android:name="io.redditapp.ui.ImageFragment"
+        android:name="io.redditapp.ui.view_image.ImageFragment"
         android:label="fragment_image"
         tools:layout="@layout/fragment_image">
         <argument
             android:name="img_url"
             app:argType="string" />
+        <argument
+            android:name="is_img_fullsize"
+            app:argType="boolean" />
     </fragment>
 </navigation>

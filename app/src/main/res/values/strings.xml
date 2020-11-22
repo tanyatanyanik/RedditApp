@@ -22,4 +22,6 @@
     <string name="one_month_ago">1 month ago</string>
     <string name="one_year_ago">1 year ago</string>
     <string name="reddit_s_top_publications">Reddit\'s top publications</string>
+    <string name="no_image">No image</string>
+    <string name="no_origin_img">Original image is not available. Thumbnail showed</string>
 </resources>

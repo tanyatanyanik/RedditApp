@@ -48,7 +48,6 @@ class PublicationAdapter(val onImageClick: (itemId: String?) -> Unit) :
         else
             holder.tvComments.text = context.getString(R.string.comments, (comments).toString())
 
-//        holder.tvDate.text = DateUtils.formatDateFromMillis(pub.getDateMillis(), DF_DATE_STANDARD)
         pub.getDateMillis()?.let {
             holder.tvDate.text = DateUtils.formatTimeAgoFromMillis(it, context.resources)
         }
