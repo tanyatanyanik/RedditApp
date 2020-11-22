@@ -1,6 +1,7 @@
 package io.redditapp.ui.base
 
 import android.content.Context
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
@@ -19,6 +20,10 @@ open class BaseFragment : Fragment() {
             dialog.dismiss()
         }
         mDialog.create().show()
+    }
+
+    fun showToast(msg: String) {
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
     }
 
     inline infix fun <T> LiveData<T>.observe(crossinline action: (T) -> Unit) =

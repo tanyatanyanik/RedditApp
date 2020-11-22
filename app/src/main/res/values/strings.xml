@@ -24,4 +24,7 @@
     <string name="reddit_s_top_publications">Reddit\'s top publications</string>
     <string name="no_image">No image</string>
     <string name="no_origin_img">Original image is not available. Thumbnail showed</string>
+    <string name="img_saved">Image saved</string>
+    <string name="saving_failed">Saving failed</string>
+    <string name="unable_save">Saving images is not available</string>
 </resources>

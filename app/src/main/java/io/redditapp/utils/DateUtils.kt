@@ -1,12 +1,13 @@
 package io.redditapp.utils
 
+import android.annotation.SuppressLint
 import android.content.res.Resources
 import io.redditapp.R
 import java.text.SimpleDateFormat
 import java.util.*
 
-const val DF_WEEK_DAY_MONTH = "EEE, dd MMM"
 const val DF_DATE_STANDARD = "yyyy-MM-dd HH:mm"
+const val DF_DATE_FOR_FILENAME = "yyyyMMdd_HHmmss"
 
 const val ONE_MINUTE: Long = 1000 * 60
 const val ONE_HOUR: Long = ONE_MINUTE * 60
@@ -17,6 +18,7 @@ const val ONE_YEAR: Long = ONE_DAY * 365
 
 object DateUtils {
 
+    @SuppressLint("SimpleDateFormat")
     fun formatDateFromMillis(millis: Long?, format: String = DF_DATE_STANDARD): String {
         val d = SimpleDateFormat(format)
         return "" + d.format(if (millis != null) Date(millis) else Date())
@@ -55,6 +57,11 @@ object DateUtils {
             else resources.getString(R.string.minutes_ago, n.toString())
         }
         return resources.getString(R.string.now)
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun getDateString(format: String = DF_DATE_FOR_FILENAME): String {
+        return SimpleDateFormat(format).format(Date())
     }
 
 }
