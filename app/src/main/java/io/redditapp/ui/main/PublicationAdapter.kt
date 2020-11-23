@@ -54,14 +54,16 @@ class PublicationAdapter(val onImageClick: (itemId: String?) -> Unit) :
 
         val url = pub.getThumbNailUrl()
         if (url != null) {
-            Glide.with(context).load(url).into(holder.iv)
-            holder.iv.scaleType = ImageView.ScaleType.CENTER_CROP
+            Glide
+                .with(context)
+                .load(url)
+                .placeholder(R.drawable.ic_reddit_icon)
+                .error(R.drawable.ic_reddit_icon)
+                .fallback(R.drawable.ic_reddit_icon)
+                .into(holder.iv)
             holder.iv.setOnClickListener {
                 onImageClick(pub.id)
             }
-        } else {
-            Glide.with(context).load(context.getDrawable(R.drawable.ic_reddit_icon)).into(holder.iv)
-            holder.iv.scaleType = ImageView.ScaleType.FIT_CENTER
         }
     }
 
